@@ -107,13 +107,13 @@ describe Mongoid::Contexts::Mongo do
     end
 
     context ":paginator :kaminari" do 
-      let(:near) {Bar.geo_near([1,1], :page => 1)}
+      let(:near) {Bar.geo_near([1,1])}
       it "should have current_page" do
         near.current_page.should == 1
       end
 
       it "should have num_pages" do
-        near.num_pages.should == 2
+        near.per(25).num_pages.should == 2
       end
 
       it "should have limit_value" do
